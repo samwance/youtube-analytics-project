@@ -21,6 +21,37 @@ class Channel:
         self.video_count = int(self.youtube['items'][0]['statistics']['videoCount'])
         self.view_count = int(self.youtube['items'][0]['statistics']['viewCount'])
 
+
+    def __str__(self):
+        return f"{self.name} ({self.link})"
+
+    def __add__(self, other):
+        return int(self.subscriber_count) + int(other.subscriber_count)
+
+
+    def __sub__(self, other):
+        return int(self.subscriber_count) - int(other.subscriber_count)
+
+
+    def __gt__(self, other):
+        return self.subscriber_count > other.subscriber_count
+
+
+    def __ge__(self, other):
+        return self.subscriber_count >= other.subscriber_count
+
+
+    def __lt__(self, other):
+        return self.subscriber_count < other.subscriber_count
+
+
+    def __le__(self, other):
+        return self.subscriber_count <= other.subscriber_count
+
+
+    def __eq__(self, other):
+        return self.subscriber_count == other.subscriber_count
+
     @classmethod
     def get_service(cls):
         """Возвращает объект службы YouTube API для выполнения запросов к API."""
